@@ -2,10 +2,12 @@
 # Author: @portslug
 
 # This Quack Recon Script (beta) has a lot of features for doing recon with the Ruber Ducky; that is packed into a single script. Below is some of the main functions
-# Displays the current WiFi Connections credentials by exploiting the * character in Command Prompt, which acts as "everything". * in netsh wlan show profile name=* key=clear Thus, regardless of the access points name, wifi will display the key(password) in plaintext output
+# Displays the current WiFi Connections credentials by exploiting the * character in Command Prompt, which acts as "everything". * in netsh wlan show profile name=* key=clear Thus, 
+  regardless of the access points name, wifi will display the key(password) in plaintext output
 # Display ipconfig /all  and netstat -ano
 # Creates an access point with the credentials ssid=verizon key=password then drops the windows firewall
-# By "exploiting"the copy command prompts output function, and sending it via SMTP through Powershell. The Notepad file will copy all of command Prompts output that is located in the windows temp folder (C:\Windows\Temp\Settings.txt).
+# By "exploiting"the copy command prompts output function, and sending it via SMTP through Powershell. 
+  The Notepad file will copy all of the command Prompts output to the  windows temp folder (C:\Windows\Temp\Settings.txt).
 
 # This script is a little buggy/sluggish still and is in the testing phase. Please feel free to modiy it's functionality to your liking
 
